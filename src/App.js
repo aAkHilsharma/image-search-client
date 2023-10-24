@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+
+import ImageList from "./components/images/image-list-component";
+import JumboTron from "./components/jumbotron-component";
+import useAxios from "./hooks/use-axios";
+import ImageModal from "./modals/image-modal";
+
+const API_URL = `/search/photos?page=1&query=peace&client_id=${process.env.REACT_APP_ACCESS_KEY}`;
 
 function App() {
+  const { fetchImages } = useAxios();
+
+  useEffect(() => {
+    fetchImages(API_URL);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <JumboTron />
+      <ImageList />
+      <ImageModal />
+    </>
   );
 }
 
