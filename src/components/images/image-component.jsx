@@ -8,11 +8,11 @@ const Image = ({ data, onClick }) => {
       className="rounded-lg border shadow-md overflow-hidden hover:opacity-80 cursor-pointer"
     >
       <img
-        className="h-64 w-full object-cover"
+        className="w-full object-cover"
         src={data.urls.small}
         alt={data.alt_description}
       />
-      <div className="flex text-xs p-4 justify-between items-center">
+      <div className="flex text-xs py-2 px-3 justify-between items-center">
         <div className="flex gap-2 justify-center items-center">
           <img
             className="rounded-full h-10 border-2"

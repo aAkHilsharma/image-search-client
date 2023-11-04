@@ -12,7 +12,7 @@ const SearchField = () => {
   useEffect(() => {
     if (debouncedSearch)
       fetchImages(
-        `/search/photos?page=1&query=${debouncedSearch}&client_id=${process.env.REACT_APP_ACCESS_KEY}`,
+        `/search/photos?per_page=20&query=${debouncedSearch}&client_id=${process.env.REACT_APP_ACCESS_KEY}`
       );
   }, [debouncedSearch]);
 
@@ -21,7 +21,7 @@ const SearchField = () => {
   };
 
   return (
-    <div className="flex justify-center items-center text-xs md:text-sm bg-[#f6f6f6] border-2 px-2 py-1 md:px-4 md:py-2 gap-2 text-gray-600 border-gray-200 rounded-md">
+    <div className="flex justify-center items-center text-xs md:text-sm bg-[#f6f6f6] text-gray-400 px-2 py-1 md:px-4 md:py-2 gap-2 shadow-lg rounded-full">
       <HiMagnifyingGlass size={20} />
       <input
         value={query}
