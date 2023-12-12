@@ -1,12 +1,28 @@
 describe("image list test", () => {
   beforeEach(() => {
+    cy.intercept(
+      "GET",
+      "https://api.unsplash.com/search/photos?per_page=20&query=peace&client_id=t5oy6hYlHQFOIcccOedFa4lzR8qBD04cZW2ZeffF6ew"
+    ).as("fetchImagesInitially");
     // Navigate to the image search page
     cy.visit("/");
+    cy.wait("@fetchImagesInitially")
+      .its("response.statusCode")
+      .should("eq", 200);
   });
 
   it.only("Verifies Tags in Image Modals After Searching for 'Food'", () => {
+    const url =
+      "https://api.unsplash.com/search/photos?per_page=20&query=food&client_id=t5oy6hYlHQFOIcccOedFa4lzR8qBD04cZW2ZeffF6ew";
+
+    cy.intercept("GET", url).as("fetchImagesAfterQuery");
+
     // Type "Food" into the search field
-    cy.getData("search-field-input").type("food").wait(600);
+    cy.getData("search-field-input").type("food");
+
+    cy.wait("@fetchImagesAfterQuery")
+      .its("response.statusCode")
+      .should("eq", 200);
 
     // Iterate through each image in the search results
     cy.getData("image-list-container")
