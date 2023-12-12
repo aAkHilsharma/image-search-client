@@ -24,6 +24,7 @@ const SearchField = () => {
     <div className="flex justify-center items-center text-xs md:text-sm bg-[#f6f6f6] text-gray-400 px-2 py-1 md:px-4 md:py-2 gap-2 shadow-lg rounded-full">
       <HiMagnifyingGlass size={20} />
       <input
+        data-test="search-field-input"
         value={query}
         onChange={handleChange}
         className="bg-transparent flex-1 focus:outline-none"

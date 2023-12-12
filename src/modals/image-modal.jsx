@@ -7,7 +7,7 @@ import { CiTwitter, CiInstagram } from "react-icons/ci";
 import useImageModal from "../hooks/use-modal";
 
 const ImageModal = () => {
-  const { isOpen, onClose, data } = useImageModal();
+  const { isOpen, onClose, data, dataTest } = useImageModal();
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
@@ -32,7 +32,10 @@ const ImageModal = () => {
           ${isOpen ? "opacity-100" : "opacity-0"}`}
         >
           <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg w-full bg-white outline-none focus:outline-none">
-            <div className="flex flex-col items-center rounded-lg overflow-hidden justify-center relative">
+            <div
+              data-test={dataTest}
+              className="flex flex-col items-center rounded-lg overflow-hidden justify-center relative"
+            >
               <button className="p-1 rounded-full bg-[#fafafa] border-0 hover:opacity-70 transition absolute top-2 right-2">
                 <IoMdClose onClick={handleClose} size={18} />
               </button>
@@ -82,7 +85,7 @@ const ImageModal = () => {
                 {data.tags && (
                   <div className="text-[#4f4f4f]">
                     <p className="text-sm font-black mb-2 px-1">Related Tags</p>
-                    <div className="flex gap-1">
+                    <div data-test="tags" className="flex gap-1">
                       {data.tags.map((tag, index) => (
                         <p
                           key={index}

@@ -1,9 +1,10 @@
 import React from "react";
 import { PiThumbsUpLight } from "react-icons/pi";
 
-const Image = ({ data, onClick }) => {
+const Image = ({ data, onClick, dataTest }) => {
   return (
     <div
+      data-test={dataTest}
       onClick={onClick}
       className="rounded-lg border shadow-md overflow-hidden hover:opacity-80 cursor-pointer"
     >
